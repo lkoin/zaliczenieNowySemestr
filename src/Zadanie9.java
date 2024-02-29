@@ -1,28 +1,64 @@
+import java.util.Scanner;
+
 public class Zadanie9 {
 
     public static void main(String[] args) {
-        int a = 5;
-        int b = 10;
-        int[] tablica = {2, 4, 7, 8, 10, 12, 15, 20};
+        int dolnyZakres = 0;
+        int gornyZakres = 5000000;
+        int liczbaDoZgadniecia = losujLiczbe(dolnyZakres, gornyZakres);
+        int iloscPytan = 20;
+        int szanse = 1;
 
-        int liczbaElementow = liczbaElementowWPrzedziale(tablica, a, b);
+        System.out.println("Zgadnij liczbę z zakresu od " + dolnyZakres + " do " + gornyZakres + ".");
+        System.out.println("Masz " + iloscPytan + " pytań. Pamiętaj, że możesz się pomylić raz.");
 
-        System.out.println("Liczba elementów w przedziale [" + a + ", " + b + "]: " + liczbaElementow);
-    }
+        while (iloscPytan > 0) {
+            System.out.print("Czy szukana liczba jest mniejsza od ");
+            int propozycja = (dolnyZakres + gornyZakres) / 2;
+            System.out.print(propozycja + "? (Tak/Nie): ");
 
-    public static int liczbaElementowWPrzedziale(int[] tablica, int a, int b) {
-        if (a > b) {
-            throw new IllegalArgumentException("Liczba a musi być mniejsza lub równa liczbie b.");
-        }
+            Scanner scanner = new Scanner(System.in);
+            String odpowiedz = scanner.nextLine().trim().toLowerCase();
 
-        int liczbaElementow = 0;
+            if (odpowiedz.equals("tak")) {
+                gornyZakres = propozycja - 1;
+            } else if (odpowiedz.equals("nie")) {
+                dolnyZakres = propozycja + 1;
+            } else {
+                System.out.println("Błędna odpowiedź. Wprowadź Tak lub Nie.");
+                continue;
+            }
 
-        for (int liczba : tablica) {
-            if (liczba >= a && liczba <= b) {
-                liczbaElementow++;
+            iloscPytan--;
+
+            System.out.println("Liczba możliwych pytań: " + iloscPytan);
+
+            if (iloscPytan > 0) {
+                System.out.print("Czy chcesz odgadnąć liczbę? (Tak/Nie): ");
+                String odgadnij = scanner.nextLine().trim().toLowerCase();
+
+                if (odgadnij.equals("tak")) {
+                    System.out.print("Podaj swoją propozycję liczby: ");
+                    int propozycjaOdgadniecia = scanner.nextInt();
+
+                    if (propozycjaOdgadniecia == liczbaDoZgadniecia) {
+                        System.out.println("Brawo! Zgadłeś liczbę!");
+                        break;
+                    } else {
+                        System.out.println("Niestety, nie zgadłeś liczby. Tracisz jedną szansę.");
+                        szanse--;
+
+                        if (szanse == 0) {
+                            System.out.println("Przegrałeś. Koniec gry.");
+                            break;
+                        }
+                    }
+                }
             }
         }
+    }
 
-        return liczbaElementow;
+    static int losujLiczbe(int dolnyZakres, int gornyZakres) {
+        return (int) (Math.random() * (gornyZakres - dolnyZakres + 1) + dolnyZakres);
     }
 }

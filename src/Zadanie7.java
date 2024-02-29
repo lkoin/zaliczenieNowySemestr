@@ -1,7 +1,7 @@
 public class Zadanie7 {
 
     public static void main(String[] args) {
-        int liczba = 25; // Przykładowa liczba całkowita dodatnia
+        int liczba = 64; // Przykładowa liczba całkowita dodatnia
 
         int pierwiastek = znajdzPierwiastekDyskretny(liczba);
 

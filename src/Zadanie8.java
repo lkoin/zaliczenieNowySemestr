@@ -10,7 +10,7 @@ public class Zadanie8 {
         System.out.println("Liczba elementów w przedziale [" + a + ", " + b + "]: " + liczbaElementow);
     }
 
-    static int liczbaElementowWPrzedziale(int[] tablica, int a, int b) {
+    public static int liczbaElementowWPrzedziale(int[] tablica, int a, int b) {
         if (a > b) {
             throw new IllegalArgumentException("Liczba a musi być mniejsza lub równa liczbie b.");
         }
