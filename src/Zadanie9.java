@@ -12,12 +12,13 @@ public class Zadanie9 {
         System.out.println("Zgadnij liczbę z zakresu od " + dolnyZakres + " do " + gornyZakres + ".");
         System.out.println("Masz " + iloscPytan + " pytań. Pamiętaj, że możesz się pomylić raz.");
 
-        while (iloscPytan > 0) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (iloscPytan > 0 && szanse > 0) {
             System.out.print("Czy szukana liczba jest mniejsza od ");
             int propozycja = (dolnyZakres + gornyZakres) / 2;
             System.out.print(propozycja + "? (Tak/Nie): ");
 
-            Scanner scanner = new Scanner(System.in);
             String odpowiedz = scanner.nextLine().trim().toLowerCase();
 
             if (odpowiedz.equals("tak")) {
@@ -40,6 +41,7 @@ public class Zadanie9 {
                 if (odgadnij.equals("tak")) {
                     System.out.print("Podaj swoją propozycję liczby: ");
                     int propozycjaOdgadniecia = scanner.nextInt();
+                    scanner.nextLine();  // Konsumujemy znak nowej linii
 
                     if (propozycjaOdgadniecia == liczbaDoZgadniecia) {
                         System.out.println("Brawo! Zgadłeś liczbę!");
@@ -56,6 +58,8 @@ public class Zadanie9 {
                 }
             }
         }
+
+        scanner.close();
     }
 
     static int losujLiczbe(int dolnyZakres, int gornyZakres) {

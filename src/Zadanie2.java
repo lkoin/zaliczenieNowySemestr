@@ -20,41 +20,63 @@ public class Zadanie2 {
         }
 
         Arrays.sort(tablica);
+        System.out.println();
+        System.out.println(Arrays.toString(tablica));
 
         System.out.println(); // Nowa linia dla czytelności
 
         System.out.print("Podaj szukaną liczbę: ");
         int szukanaLiczba = scanner.nextInt();
 
-        int wynik = szukanieBinarne(tablica, szukanaLiczba);
+
+        int wynik = binarySearch0(tablica, szukanaLiczba);
 
         if (wynik == n) {
             System.out.println("Element nie został znaleziony w tablicy.");
         } else {
             System.out.println("Element znajduje się na pozycji: " + wynik);
         }
+
     }
+
 
 
     // ...
-    public static int szukanieBinarne(int[] tablica, int szukana) {
-        int lewy = 0;
-        int prawy = tablica.length - 1;
+//    public static int szukanieBinarne(int[] tablica, int szukana) {
+//        int lewy = 0;
+//        int prawy = tablica.length - 1;
+//
+//        while (lewy <= prawy) {
+//            int srodek = (prawy - lewy) / 2;
+//
+//            if (tablica[srodek] == szukana) {
+//                return srodek; // Zwraca pozycję, na której znajduje się szukana liczba.
+//            } else if (tablica[srodek] < szukana) {
+//                lewy = srodek + 1;
+//            } else {
+//                prawy = srodek - 1;
+//            }
+//        }
+//
+//        return tablica.length; // Zwraca n, gdy element nie został znaleziony w tablicy.
+//    }
 
-        while (lewy <= prawy) {
-            int srodek = (prawy - lewy) / 2;
+    private static int binarySearch0(int[] a,int key) {
+        int low = 0;
+        int high = a.length - 1;
 
-            if (tablica[srodek] == szukana) {
-                return srodek; // Zwraca pozycję, na której znajduje się szukana liczba.
-            } else if (tablica[srodek] < szukana) {
-                lewy = srodek + 1;
-            } else {
-                prawy = srodek - 1;
-            }
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int midVal = a[mid];
+
+            if (midVal < key)
+                low = mid + 1;
+            else if (midVal > key)
+                high = mid - 1;
+            else
+                return mid; // key found
         }
-
-        return tablica.length; // Zwraca n, gdy element nie został znaleziony w tablicy.
+        return 0;  // key not found.
     }
-// ...
 
 }

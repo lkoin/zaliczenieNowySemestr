@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Zadanie3 {
 
     public static void main(String[] args) {
@@ -6,6 +8,13 @@ public class Zadanie3 {
         int rozpietosc = wyznaczRozpietosc(tablica);
 
         System.out.println("Rozpiętość zbioru danych: " + rozpietosc);
+
+        long start = System.currentTimeMillis();
+// ...
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+
+        System.out.println(timeElapsed);
     }
 
     static int wyznaczRozpietosc(int[] tablica) {
@@ -16,6 +25,10 @@ public class Zadanie3 {
         // Inicjalizujemy min i max wartościami pierwszego elementu tablicy.
         int minWartosc = tablica[0];
         int maxWartosc = tablica[0];
+
+        int min = Arrays.stream(tablica).min().getAsInt();
+        int max = Arrays.stream(tablica).max().getAsInt();
+
 
         for (int i = 1; i < tablica.length; i++) {
             if (tablica[i] < minWartosc) {

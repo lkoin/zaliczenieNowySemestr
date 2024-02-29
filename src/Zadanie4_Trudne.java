@@ -13,7 +13,7 @@ public class Zadanie4_Trudne {
 
         for (int i = 0; i < n; i++) {
             Random random = new Random();
-            tablica[i] = random.nextInt(100000000); // Zakres losowanych liczb od 0 do 99 (możesz dostosować zakres według potrzeb)
+            tablica[i] = random.nextInt(100000); // Zakres losowanych liczb od 0 do 99 (możesz dostosować zakres według potrzeb)
             System.out.print(tablica[i] + " ");
         }
         System.out.println();
